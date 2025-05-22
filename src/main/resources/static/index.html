@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阿梦Anmory博客</title>
+    <script src="jquery.min.js"></script>
+    <script src="./marked.min.js"></script>
+    <!-- 设置图标 -->
+    <link rel="icon" href="icon.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- 引入字体图标 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <!-- 扉页 -->
+    <div id="cover-page" class="cover-page">
+        <div class="cover-bg"></div>
+        <div class="cover-quote">
+            凡心所向，素履以往，生如逆旅，一苇以航
+            <div class="cover-source">——《瓦尔登湖》</div>
+        </div>
+        <div class="scroll-down" id="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <button class="theme-toggle" id="cover-theme-toggle" style="position: absolute; top: 20px; right: 20px;">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav id="main-nav" style="display: none;">
+        <div class="nav-brand" id="nav-brand">Anmory</div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links" id="nav-links">
+            <li>
+                <a href="#cover-page" id="nav-cover">
+                    <i class="fas fa-book-open"></i>
+                    <span>扉页<span class="en">Cover</span></span>
+                </a>
+            </li>
+            <li>
+                <a href="#first-page">
+                    <i class="fas fa-home"></i>
+                    <span>初页<span class="en">First Page</span></span>
+                </a>
+            </li>
+            <li>
+                <a href="#blog">
+                    <i class="fas fa-blog"></i>
+                    <span>博客<span class="en">Blog</span></span>
+                </a>
+            </li>
+            <li>
+                <a href="#dreams">
+                    <i class="fas fa-cloud-moon"></i>
+                    <span>梦境<span class="en">Dreams</span></span>
+                </a>
+            </li>
+            <li>
+                <a href="#movies">
+                    <i class="fas fa-film"></i>
+                    <span>影视<span class="en">Movies</span></span>
+                </a>
+            </li>
+            <li>
+                <a href="#about">
+                    <i class="fas fa-user"></i>
+                    <span>关于我<span class="en">About</span></span>
+                </a>
+            </li>
+            <li>
+                <div class="search-container">
+                    <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+                    <button class="search-btn" id="search-btn"><i class="fas fa-search"></i></button>
+                    <div class="search-results" id="search-results"></div>
+                </div>
+            </li>
+            <li>
+                <a href="#login" id="login-link">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>登录<span class="en">Login</span></span>
+                </a>
+            </li>
+            <li>
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- 主内容区域 -->
+    <div class="container">
+        <!-- 初页 -->
+        <div id="first-page" class="first-page">
+            <!-- <img src="bk.jpg" alt="背景图片" class="bg-image"> -->
+            <h1 class="page-title">欢迎来到我的博客</h1>
+
+            <!-- 全宽背景图片 -->
+            <div class="full-width-bg">
+                <!-- <img src="bk.jpg" alt="背景图片" class="bg-image"> -->
+                <div class="full-width-bg-content">
+                    <h2>探索、思考、分享</h2>
+                    <p>记录生活中的点滴，分享内心的感悟</p>
+                </div>
+            </div>
+
+            <div class="content-blocks">
+                <div class="block">
+                    <h2>最新文章</h2>
+                    <div id="latest-posts">
+                        <div class="loading-container">
+                            <div class="loader"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="block">
+                    <h2>热门文章</h2>
+                    <div id="popular-posts">
+                        <div class="loading-container">
+                            <div class="loader"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="block">
+                    <h2>关于我</h2>
+                    <p>欢迎来到我的个人博客，我是Anmory，这里记录着我的思考、经历和感悟。</p>
+                    <p>希望我的文字能够带给你一些启发和思考。</p>
+                </div>
+            </div>
+
+            <!-- 照片墙 -->
+            <div class="photo-gallery">
+                <h2>我的照片墙</h2>
+                <div class="photos-container" id="photo-gallery">
+                    <div class="loading-container">
+                        <div class="loader"></div>
+                    </div>
+                </div>
+                <a href="http://175.24.205.213:8083/photo.html"
+                    style="font-weight: bold; text-decoration: none; color: inherit;">查看更多个人作品</a>
+            </div>
+
+            <!-- 项目合辑 -->
+            <div class="project-gallery">
+                <h2>我的项目墙</h2>
+                <div class="project-container" id="project-gallery">
+                    <div class="loading-container">
+                        <div class="loader"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 博客页面 -->
+    <div id="blog" class="page">
+        <h1 class="page-title">博客</h1>
+        <div class="two-column">
+            <div class="main-content">
+                <div class="gear-layout" id="blog-posts">
+                    <div class="loading-container">
+                        <div class="loader"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar">
+                <h3>热门文章</h3>
+                <div id="blog-sidebar">
+                    <div class="loading-container">
+                        <div class="loader"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 梦境页面 -->
+    <div id="dreams" class="page">
+        <h1 class="page-title">梦境</h1>
+        <div class="two-column">
+            <div class="main-content">
+                <div class="gear-layout" id="dreams-posts">
+                    <div class="loading-container">
+                        <div class="loader"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar">
+                <h3>最新梦境</h3>
+                <div id="dreams-sidebar">
+                    <div class="loading-container">
+                        <div class="loader"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 影视页面 -->
+    <div id="movies" class="page">
+        <h1 class="page-title">影视</h1>
+        <div class="two-column">
+            <div class="main-content">
+                <div class="gear-layout" id="movies-posts">
+                    <div class="loading-container">
+                        <div class="loader"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar">
+                <h3>推荐影视</h3>
+                <div id="movies-sidebar">
+                    <div class="loading-container">
+                        <div class="loader"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 关于我页面 -->
+    <div id="about" class="page">
+        <h1 class="page-title">关于我</h1>
+        <img src="avatar.jpg" alt="头像" class="avatar" width="350">
+        <div class="two-column">
+            <div class="main-content">
+                <p>我是Anmory，这个博客是我记录思考和感悟的地方。</p>
+                <p>我喜欢旅行，电子音乐，以及探索这个世界的各种可能性。</p>
+                <p>通过这个博客，我希望能与志同道合的朋友们分享我的所见所闻，也希望能够认识更多有趣的灵魂。</p>
+                <p>如果你有任何问题或想法，欢迎随时联系我。</p>
+            </div>
+            <div class="sidebar">
+                <h3>联系方式</h3>
+                <p><i class="fas fa-envelope"></i> Email: anmory@qq.com</p>
+                <p><i class="fas fa-envelope"></i> Email: li.anmory666@gmail.com</p>
+                <p><i class="fab fa-weixin"></i> 微信: lmj182778</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 单篇文章页面 -->
+    <div id="single-post" class="page single-post">
+        <div id="post-content">
+            <div class="loading-container">
+                <div class="loader"></div>
+            </div>
+        </div>
+        <iframe id="post-webview" class="post-webview" style="display: none;"></iframe>
+        <div class="post-actions">
+            <button id="like-post"><i class="fas fa-heart"></i> <span id="likes-count">0</span> 喜欢</button>
+            <button id="bookmark-post"><i class="fas fa-bookmark"></i> 收藏</button>
+        </div>
+        <div class="post-comments">
+            <h3>评论</h3>
+            <div id="comments-list">
+                <div class="loading-container">
+                    <div class="loader"></div>
+                </div>
+            </div>
+            <div class="comment-form">
+                <textarea id="comment-text" placeholder="写下你的评论..." rows="4"></textarea>
+                <button id="submit-comment">提交评论</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 登录页面 -->
+    <div id="login" class="page">
+        <h1 class="page-title">登录</h1>
+        <div class="auth-form">
+            <div class="form-group">
+                <label for="username">用户名</label>
+                <input type="text" id="username" placeholder="请输入用户名">
+            </div>
+            <div class="form-group">
+                <label for="password">密码</label>
+                <input type="password" id="password" placeholder="请输入密码">
+            </div>
+            <div class="form-actions">
+                <button id="login-btn">登录</button>
+                <button id="register-toggle">注册新账号</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 注册页面 -->
+    <div id="register" class="page">
+        <h1 class="page-title">注册</h1>
+        <div class="auth-form">
+            <div class="form-group">
+                <label for="reg-username">用户名</label>
+                <input type="text" id="reg-username" placeholder="请输入用户名">
+            </div>
+            <div class="form-group">
+                <label for="reg-password">密码</label>
+                <input type="password" id="reg-password" placeholder="请输入密码">
+            </div>
+            <div class="form-group">
+                <label for="reg-email">邮箱</label>
+                <input type="email" id="reg-email" placeholder="请输入邮箱">
+            </div>
+            <div class="form-actions">
+                <button id="register-btn">注册</button>
+                <button id="login-toggle">返回登录</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 个人主页 -->
+    <div id="profile" class="page">
+        <div class="profile-header">
+            <!-- 替换 img 为显示首字母的 div -->
+            <div class="profile-avatar" id="profile-avatar">U</div>
+
+            <div class="profile-info">
+                <h2 id="profile-username">用户名</h2>
+                <p id="profile-email">邮箱</p>
+                <p>注册时间: <span id="profile-created">2025-05-20</span></p>
+
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="profile-posts-count">0</div>
+                        <div class="stat-label">文章</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="profile-comments-count">0</div>
+                        <div class="stat-label">评论</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="profile-likes-count">0</div>
+                        <div class="stat-label">获赞</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="profile-tabs">
+            <div class="profile-tab active" data-tab="bookmarks">我的收藏</div>
+            <div class="profile-tab" data-tab="comments">我的评论</div>
+            <div class="profile-tab" data-tab="settings">账号设置</div>
+        </div>
+        <div class="profile-content">
+            <div class="tab-content active" id="bookmarks-content">
+                <div class="loading-container">
+                    <div class="loader"></div>
+                </div>
+            </div>
+            <div class="tab-content" id="comments-content">
+                <div class="loading-container">
+                    <div class="loader"></div>
+                </div>
+            </div>
+            <div class="tab-content" id="settings-content">
+                <div class="auth-form">
+                    <div class="form-group">
+                        <label for="update-email">邮箱</label>
+                        <input type="email" id="update-email" placeholder="请输入新邮箱">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-password">密码</label>
+                        <input type="password" id="update-password" placeholder="请输入新密码">
+                    </div>
+                    <div class="form-actions">
+                        <button id="update-profile-btn">更新信息</button>
+                        <button id="logout-btn">退出登录</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 管理员页面 -->
+    <div id="admin-panel" class="page">
+        <h1 class="page-title">管理员控制台</h1>
+
+        <div class="admin-tabs">
+            <button class="admin-tab active" data-tab="create-post">发布文章</button>
+            <button class="admin-tab" data-tab="manage-posts">管理文章</button>
+            <button class="admin-tab" data-tab="manage-users">管理用户</button>
+        </div>
+
+        <div class="admin-content">
+            <!-- 发布文章表单 -->
+            <div id="create-post" class="admin-tab-content active">
+                <h2>发布新文章</h2>
+                <div class="admin-form">
+                    <div class="form-group">
+                        <label for="new-post-title">标题</label>
+                        <input type="text" id="new-post-title" placeholder="请输入文章标题">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-post-category">分类</label>
+                        <select id="new-post-category">
+                            <option value="博客">博客</option>
+                            <option value="梦境">梦境</option>
+                            <option value="影视">影视</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-post-url">封面图片URL</label>
+                        <input type="text" id="new-post-url" placeholder="请输入封面图片URL（可选）">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-post-content">内容</label>
+                        <textarea id="new-post-content" rows="10" placeholder="请输入文章内容"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button id="submit-new-post">发布文章</button>
+                        <button id="clear-post-form">清空表单</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 管理文章列表 -->
+            <div id="manage-posts" class="admin-tab-content">
+                <h2>管理文章</h2>
+                <div class="admin-search">
+                    <input type="text" id="post-search" placeholder="搜索文章标题...">
+                    <button id="search-post-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>标题</th>
+                                <th>分类</th>
+                                <th>发布时间</th>
+                                <th>点赞数</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="posts-table-body">
+                            <!-- 文章列表将通过JavaScript动态加载 -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="admin-pagination">
+                    <button id="prev-page"><i class="fas fa-chevron-left"></i></button>
+                    <span id="page-info">第 <span id="current-page">1</span> 页，共 <span id="total-pages">1</span>
+                        页</span>
+                    <button id="next-page"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <!-- 管理用户列表 -->
+            <div id="manage-users" class="admin-tab-content">
+                <h2>管理用户</h2>
+                <div class="admin-search">
+                    <input type="text" id="user-search" placeholder="搜索用户名...">
+                    <button id="search-user-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>用户名</th>
+                                <th>邮箱</th>
+                                <th>注册时间</th>
+                                <th>管理员</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-table-body">
+                            <!-- 用户列表将通过JavaScript动态加载 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 编辑文章对话框 -->
+    <div id="edit-post-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>编辑文章</h2>
+            <div class="admin-form">
+                <input type="hidden" id="edit-post-id">
+                <div class="form-group">
+                    <label for="edit-post-title">标题</label>
+                    <input type="text" id="edit-post-title" placeholder="请输入文章标题">
+                </div>
+                <div class="form-group">
+                    <label for="edit-post-category">分类</label>
+                    <select id="edit-post-category">
+                        <option value="博客">博客</option>
+                        <option value="梦境">梦境</option>
+                        <option value="影视">影视</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-post-url">封面图片URL</label>
+                    <input type="text" id="edit-post-url" placeholder="请输入封面图片URL（可选）">
+                </div>
+                <div class="form-group">
+                    <label for="edit-post-content">内容</label>
+                    <textarea id="edit-post-content" rows="10" placeholder="请输入文章内容"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button id="update-post-btn">更新文章</button>
+                    <button id="cancel-edit-btn">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2025 Anmory Blog. 保留所有权利。</p>
+        <p>蜀ICP备2025141454号</p>
+        <p id="random-quote"></p> <!-- 这里显示随机句子 -->
+        <p id="visit-info">网站访问量: <span id="visit-count">0</span></p>
+    </footer>
+    </div>
+
+    <!-- AI聊天按钮 -->
+    <button class="ai-chat-btn" id="ai-chat-btn">
+        <i class="fas fa-robot"></i> AI对话
+    </button>
+
+    <!-- AI聊天模态框 -->
+    <div id="ai-chat-modal" class="modal">
+        <div class="modal-content ai-chat-modal-content">
+            <span class="close-modal" id="ai-chat-close">×</span>
+            <h2>AI对话</h2>
+            <div class="ai-chat-container">
+                <div class="ai-chat-messages" id="ai-chat-messages">
+                    <!-- 聊天消息将动态添加 -->
+                </div>
+                <div class="ai-chat-input">
+                    <textarea id="ai-chat-input" placeholder="请输入你的消息..." rows="3"></textarea>
+                    <button id="ai-chat-send">发送</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 通知 -->
+    <div class="notification" id="notification"></div>
+
+    <script src="script.js"></script>
+    <!-- 引入jQuery -->
+    <script src="jquery.min.js"></script>
+    <script>
+        // 为扉页添加主题切换功能
+        document.getElementById('cover-theme-toggle').addEventListener('click', function () {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            // 更新扉页主题图标
+            const icon = this.querySelector('i');
+            if (newTheme === 'dark') {
+                icon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon';
+            }
+
+            // 同步更新导航栏主题图标
+            updateThemeIcon(newTheme);
+        });
+
+        const quotes = [
+            "循此苦旅，以祗繁星",
+            "于是我们继续奋力向前，逆水行舟，被不断地向后推，直至回到往昔岁月",
+            "铜鸟一觉醒来,时间已经飞行了三千年,太阳还是那个太阳",
+            "时间从不回答，生命从不喧哗",
+            "愿你一生努力，一生被爱，想要的都拥有，得不到的都释怀",
+            "Stay hungry, stay foolish."
+        ];
+
+        // 随机选择一句显示
+        function showRandomQuote() {
+            if (quotes.length > 0) {
+                const randomIndex = Math.floor(Math.random() * quotes.length);
+                document.getElementById('random-quote').textContent = quotes[randomIndex];
+            }
+        }
+
+        // 页面加载时执行
+        window.onload = function () {
+            showRandomQuote();
+
+            // 这里可以添加访问量计数逻辑
+            // 例如：
+            // let count = localStorage.getItem('visitCount') || 0;
+            // count++;
+            // localStorage.setItem('visitCount', count);
+            // document.getElementById('visit-count').textContent = count;
+        };
+    </script>
+    <script src="jquery.min.js"></script>
+</body>
+
+</html>
